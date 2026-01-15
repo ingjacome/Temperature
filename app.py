@@ -6,9 +6,9 @@ from modules.temperature_calc import (
 	transmitter_error,
 	total_error
 )
-from modules.thermowell import *
-from modules.sensors_db import *
-from modules.plots import *
+#from modules.thermowell import *
+#from modules.sensors_db import *
+#from modules.plots import *
 import os
 
 st.set_page_config(page_title="Temperature EPC Tool", layout="wide")
