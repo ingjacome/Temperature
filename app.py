@@ -68,6 +68,7 @@ if st.sidebar.button("Calcular temperatura"):
     diameter_m = internal_diameter_in * 0.0254  # pulgadas → milimetros
 
     velocity = flow_m3_s / (3.1416 * (diameter_m/2)**2)
+    velocity_SI = velocity/3.2804
     insertion_length = internal_diameter_in * 2/3 + hod  # regla práctica para longitud de inserción
     length_mm = insertion_length * 25.4
 
@@ -93,7 +94,7 @@ if st.sidebar.button("Calcular temperatura"):
         st.metric("Rango transmisor", f"0 – {high} °C")
         st.metric("Sensor seleccionado", sensor["model"])
         st.metric("Error total", f"{err_total:.3f} °C")
-        st.metric("Velocidad del fluido", f"{velocity:.2f} m/s")
+        st.metric("Velocidad del fluido", f"{velocity_SI:.2f} ft/s")
         st.metric("Longitud inserción termopozo", f"{length_mm:.2f} mm")
         
         if "NO CUMPLE" in status:
