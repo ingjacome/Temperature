@@ -7,6 +7,7 @@ from plots import *
 Tn = 120
 Tmax = 150
 unit = "C"
+flow = 3000
 velocity = 4
 diameter = 6
 length = 180
