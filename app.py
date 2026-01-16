@@ -94,16 +94,16 @@ if st.sidebar.button("Calcular temperatura"):
     # Diámetro interno aproximado según Schedule
     internal_diameter_in = pipe_diameter - 2 * wall_thickness_in
     #internal_diameter_in = sch_dict.get(pipe_sch, 0.0895)
-    diameter_m = internal_diameter_in * 0.0254  # pulgadas → milimetros
+    diameter_m = internal_diameter_in * 0.0254  # pulgadas → metros
 
     velocity = flow_m3_s / (3.1416 * (diameter_m/2)**2)
-    velocity_SI = velocity*3.2804
-    insertion_length = internal_diameter_in * 2/3 + hod  # regla práctica para longitud de inserción
+    velocity_ft_s = velocity*3.2804
+    insertion_length = 2/3 * internal_diameter_in + hod  # regla práctica para longitud de inserción
     length_mm = insertion_length * 25.4
 
     # Verificación termopozo (usando función ya existente)
     status, fv, fn = check_thermowell(
-        velocity, diameter_m*1000, insertion_length*1000, elastic_modulus, density
+        velocity, diameter_m*1000, length_mm, elastic_modulus, density
     )
 
     os.makedirs("output", exist_ok=True)
@@ -123,7 +123,7 @@ if st.sidebar.button("Calcular temperatura"):
         st.metric("Rango transmisor", f"0 – {high} °C")
         st.metric("Sensor seleccionado", sensor["model"])
         st.metric("Error total", f"{err_total:.3f} °C")
-        st.metric("Velocidad del fluido", f"{velocity_SI:.2f} ft/s")
+        st.metric("Velocidad del fluido", f"{velocity_ft_s:.2f} ft/s")
         st.metric("Longitud inserción termopozo", f"{length_mm:.2f} mm")
         
         if "NO CUMPLE" in status:
