@@ -1,1 +1,27 @@
-{"nbformat":4,"nbformat_minor":0,"metadata":{"colab":{"provenance":[],"authorship_tag":"ABX9TyOgrwBwp1P1K8rSsiwv/u/p"},"kernelspec":{"name":"python3","display_name":"Python 3"},"language_info":{"name":"python"}},"cells":[{"cell_type":"code","execution_count":1,"metadata":{"id":"4kNTZ20-873w","executionInfo":{"status":"ok","timestamp":1768502363672,"user_tz":300,"elapsed":14,"user":{"displayName":"Erik Jácome","userId":"05183358460023020012"}}},"outputs":[],"source":["import matplotlib.pyplot as plt\n","\n","def plot_transmitter_range(tn, tmax, span, filename):\n","    plt.figure()\n","    plt.bar([\"Tn\", \"Tmax\"], [tn, tmax])\n","    plt.axhline(span, linestyle=\"--\", label=\"Límite transmisor\")\n","    plt.ylabel(\"Temperatura °C\")\n","    plt.legend()\n","    plt.savefig(filename)\n","    plt.close()\n","\n","\n","def plot_error(err_sensor, err_tx, err_total, filename):\n","    plt.figure()\n","    plt.bar([\"Sensor\", \"Transmisor\", \"Total\"],\n","            [err_sensor, err_tx, err_total])\n","    plt.ylabel(\"Error °C\")\n","    plt.savefig(filename)\n","    plt.close()\n","\n","\n","def plot_thermowell(fn, fv, filename):\n","    plt.figure()\n","    plt.bar([\"fn\", \"2.2 fv\"], [fn, 2.2 * fv])\n","    plt.ylabel(\"Frecuencia (Hz)\")\n","    plt.savefig(filename)\n","    plt.close()\n"]}]}
+import matplotlib.pyplot as plt
+
+def plot_transmitter_range(tn, tmax, span, filename):
+    plt.figure()
+    plt.bar(["Tn", "Tmax"], [tn, tmax])
+    plt.axhline(span, linestyle="--", label="Límite transmisor")
+    plt.ylabel("Temperatura °C")
+    plt.legend()
+    plt.savefig(filename)
+    plt.close()
+
+
+def plot_error(err_sensor, err_tx, err_total, filename):
+    plt.figure()
+    plt.bar(["Sensor", "Transmisor", "Total"],
+            [err_sensor, err_tx, err_total])
+    plt.ylabel("Error °C")
+    plt.savefig(filename)
+    plt.close()
+
+
+def plot_thermowell(fn, fv, filename):
+    plt.figure()
+    plt.bar(["fn", "2.2 fv"], [fn, 2.2 * fv])
+    plt.ylabel("Frecuencia (Hz)")
+    plt.savefig(filename)
+    plt.close()
