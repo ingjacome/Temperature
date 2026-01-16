@@ -63,7 +63,7 @@ if st.sidebar.button("Calcular temperatura"):
 
     # Diámetro interno aproximado según Schedule
     sch_dict = {"SCH 10": 0.12, "SCH 40": 0.237, "SCH 80": 0.337}  # ejemplo 4" in
-    Internal_diameter_in = pipe_diameter - 2 * sch_dict.get(pipe_sch, 0.12)
+    internal_diameter_in = pipe_diameter - 2 * sch_dict.get(pipe_sch, 0.12)
     #internal_diameter_in = sch_dict.get(pipe_sch, 0.0895)
     diameter_m = internal_diameter_in * 0.0254  # pulgadas → metros
 
