@@ -105,12 +105,12 @@ if st.sidebar.button("Calcular temperatura"):
 
     velocity = flow_m3_s / (3.1416 * (diameter_m/2)**2)
     velocity_ft_s = velocity*3.2804
-    insertion_length = 2/3 * internal_diameter_in + hod  # regla práctica para longitud de inserción
-    length_mm = insertion_length * 25.4
+    insertion_length = 2/3 * internal_diameter_in  # regla práctica para longitud de inserción
+    length_mm = (insertion_length + hod) * 25.4
 
     # Verificación termopozo (usando función ya existente)
     status, fv, fn = check_thermowell(
-        velocity, diameter_m*1000, length_mm, elastic_modulus, density
+        velocity, diameter_m*1000, insertion_length*25.4, elastic_modulus, density
     )
     
     # mostrar unidades seleccionadas
