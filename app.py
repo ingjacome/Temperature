@@ -49,7 +49,7 @@ PIPE_DIAMETERS = {
 
 st.sidebar.header("Inputs de Tubería")
 pipe_diameter = st.sidebar.selectbox("Diámetro nominal (NPS)", options=list(PIPE_DIAMETERS.keys()))
-pipe_sch = st.sidebar.selectbox("Schedule", options=list(PIPE_DIAMETERS[pipe_nps].keys()))
+pipe_sch = st.sidebar.selectbox("Schedule", options=list(PIPE_DIAMETERS[pipe_diameter].keys()))
 #pipe_diameter = st.sidebar.number_input("Diámetro de tubería (inches)", value=4.0)
 #pipe_sch = st.sidebar.selectbox("Schedule de tubería", ["SCH 10", "SCH 40", "SCH 80"])
 hod = st.sidebar.number_input("HOD (in)", value=6.0)
