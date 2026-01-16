@@ -1,1 +1,40 @@
-{"nbformat":4,"nbformat_minor":0,"metadata":{"colab":{"provenance":[],"authorship_tag":"ABX9TyN6jlPUaEVqtLHhzj/mHkHj"},"kernelspec":{"name":"python3","display_name":"Python 3"},"language_info":{"name":"python"}},"cells":[{"cell_type":"code","execution_count":1,"metadata":{"colab":{"base_uri":"https://localhost:8080/","height":383},"id":"Zrkysj5h9XgI","executionInfo":{"status":"error","timestamp":1768502488674,"user_tz":300,"elapsed":29,"user":{"displayName":"Erik Jácome","userId":"05183358460023020012"}},"outputId":"29f025f5-f83d-47cc-e6ac-0bba11dfd09f"},"outputs":[{"output_type":"error","ename":"ModuleNotFoundError","evalue":"No module named 'temperature_calc'","traceback":["\u001b[0;31m---------------------------------------------------------------------------\u001b[0m","\u001b[0;31mModuleNotFoundError\u001b[0m                       Traceback (most recent call last)","\u001b[0;32m/tmp/ipython-input-2433205495.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0;32mfrom\u001b[0m \u001b[0mtemperature_calc\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0;34m*\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m      2\u001b[0m \u001b[0;32mfrom\u001b[0m \u001b[0mthermowell\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0;34m*\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      3\u001b[0m \u001b[0;32mfrom\u001b[0m \u001b[0msensors_db\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0;34m*\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      4\u001b[0m \u001b[0;32mfrom\u001b[0m \u001b[0mplots\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0;34m*\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      5\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n","\u001b[0;31mModuleNotFoundError\u001b[0m: No module named 'temperature_calc'","","\u001b[0;31m---------------------------------------------------------------------------\u001b[0;32m\nNOTE: If your import is failing due to a missing package, you can\nmanually install dependencies using either !pip or !apt.\n\nTo view examples of installing some common dependencies, click the\n\"Open Examples\" button below.\n\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n"],"errorDetails":{"actions":[{"action":"open_url","actionText":"Open Examples","url":"/notebooks/snippets/importing_libraries.ipynb"}]}}],"source":["from temperature_calc import *\n","from thermowell import *\n","from sensors_db import *\n","from plots import *\n","\n","# INPUTS\n","Tn = 120\n","Tmax = 150\n","unit = \"C\"\n","velocity = 15\n","diameter = 18\n","length = 180\n","elastic_modulus = 193\n","density = 1000\n","\n","if unit == \"F\":\n","    Tn = f_to_c(Tn)\n","    Tmax = f_to_c(Tmax)\n","\n","# TRANSMISOR\n","low, high = select_transmitter_range(Tmax)\n","span = high - low\n","\n","# SENSOR\n","sensor = select_sensor(high)\n","err_sensor = sensor_error(sensor[\"type\"], \"A\", Tn)\n","err_tx = transmitter_error(span)\n","err_total = total_error(err_sensor, err_tx)\n","\n","# TERMOPOZO\n","status, fv, fn = check_thermowell(velocity, diameter, length, elastic_modulus, density)\n","\n","# PLOTS\n","plot_transmitter_range(Tn, Tmax, high, \"output/range_plot.png\")\n","plot_error(err_sensor, err_tx, err_total, \"output/error_plot.png\")\n","plot_thermowell(fn, fv, \"output/thermowell_plot.png\")\n","\n","print(\"RESULTADO FINAL:\", status)\n","print(\"Sensor seleccionado:\", sensor[\"model\"])\n","print(\"Error total:\", round(err_total, 3), \"°C\")\n"]}]}
+from temperature_calc import *
+from thermowell import *
+from sensors_db import *
+from plots import *
+
+# INPUTS
+Tn = 120
+Tmax = 150
+unit = "C"
+velocity = 4
+diameter = 6
+length = 180
+elastic_modulus = 193
+density = 1000
+
+if unit == "F":
+    Tn = f_to_c(Tn)
+    Tmax = f_to_c(Tmax)
+
+# TRANSMISOR
+low, high = select_transmitter_range(Tmax)
+span = high - low
+
+# SENSOR
+sensor = select_sensor(high)
+err_sensor = sensor_error(sensor["type"], "A", Tn)
+err_tx = transmitter_error(span)
+err_total = total_error(err_sensor, err_tx)
+
+# TERMOPOZO
+status, fv, fn = check_thermowell(velocity, diameter, length, elastic_modulus, density)
+
+# PLOTS
+plot_transmitter_range(Tn, Tmax, high, "output/range_plot.png")
+plot_error(err_sensor, err_tx, err_total, "output/error_plot.png")
+plot_thermowell(fn, fv, "output/thermowell_plot.png")
+
+print("RESULTADO FINAL:", status)
+print("Sensor seleccionado:", sensor["model"])
+print("Error total:", round(err_total, 3), "°C")
