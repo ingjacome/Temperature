@@ -27,7 +27,7 @@ hod = st.sidebar.number_input("HOD (m)", value=6.0)
 
 st.sidebar.header("Termopozo")
 diameter = st.sidebar.number_input("Diámetro termopozo (mm)", value=18.0)
-length = st.sidebar.number_input("Longitud inserción (mm)", value=180.0)
+#length = st.sidebar.number_input("Longitud inserción (mm)", value=180.0)
 elastic_modulus = st.sidebar.number_input("Módulo elasticidad (GPa)", value=193.0, help = "Valores típicos: SS316 ≈ 193 GPa, Inconel625 ≈ 207 GPa")
 density = st.sidebar.number_input("Densidad fluido (kg/m³)", value=1000.0)
 
@@ -68,6 +68,7 @@ if st.sidebar.button("Calcular temperatura"):
 
     velocity = flow_m3_s / (3.1416 * (diameter_m/2)**2)
     insertion_length = internal_diameter_in * 2/3 + hod  # regla práctica para longitud de inserción
+    length_mm = insertion_length * 0.0254
 
     # Verificación termopozo (usando función ya existente)
     status, fv, fn = check_thermowell(
