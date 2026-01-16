@@ -59,7 +59,7 @@ if st.sidebar.button("Calcular temperatura"):
     # -----------------
     # Calcular velocidad desde flujo y diámetro de tubería
     bbl_to_m3 = 0.158987
-    flow_m3_s = flow_bpd * bbl_to_m3 / (24*3600)  # BPD → m³/s
+    flow_m3_s = flow * bbl_to_m3 / (24*3600)  # BPD → m³/s
 
     # Diámetro interno aproximado según Schedule
     sch_dict = {"SCH 10": 0.065, "SCH 40": 0.067, "SCH 80": 0.065}  # ejemplo 4" in
