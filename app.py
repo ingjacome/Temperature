@@ -23,14 +23,14 @@ flow = st.sidebar.number_input("Flujo (BPD)", value=1000.0)
 # Diámetros internos reales en METROS
 PIPE_DIAMETERS = {
     3: {
-        "SCH 10s/10": 0.12,
+        "SCH 10": 0.12,
         "SCH 40/STD": 0.216,
         "SCH XS/80": 0.3,
         "SCH 160": 0.438,
         "SCH XXS": 0.6,
     },
     4: {
-        "SCH 10s/10": 0.12,
+        "SCH 10": 0.12,
         "SCH 40/STD": 0.237,
         "SCH XS/80": 0.337,
         "SCH 120": 0.438,
@@ -38,19 +38,114 @@ PIPE_DIAMETERS = {
         "SCH XXS": 0.674,
     },
     6: {
-        "SCH 10s/10": 0.134,
+        "SCH 10": 0.134,
         "SCH 40/STD": 0.28,
         "SCH XS/80": 0.432,
         "SCH 120": 0.562,
         "SCH 160": 0.719,
         "SCH XXS": 0.864,
     },
+    8: {
+        "SCH 10": 0.148,
+        "SCH 20": 0.250,
+        "SCH 40/STD": 0.322,
+        "SCH 60": 0.406,
+        "SCH XS/80": 0.500,
+        "SCH 120": 0.719,
+        "SCH XXS": 0.875,
+        "SCH 160": 0.906,
+    },
+    10: {
+        "SCH 10": 0.165,
+        "SCH 20": 0.250,
+        "SCH 40/STD": 0.365,
+        "SCH 60/XS": 0.500,
+        "SCH 80": 0.594,
+        "SCH 120": 0.844,
+        "SCH XXS/140": 1.000,
+        "SCH 160": 1.125,
+    },
+    12: {
+        "SCH 10": 0.180,
+        "SCH 20": 0.250,
+        "SCH STD": 0.375,
+        "SCH 40": 0.406,
+        "SCH XS": 0.500,
+        "SCH 60": 0.562,
+        "SCH 80": 0.688,
+        "SCH XXS/120": 1.000,
+        "SCH 160": 1.312,
+    },
+    14: {
+        "SCH 10": 0.250,
+        "SCH 20": 0.312,
+        "SCH STD/30": 0.375,
+        "SCH 40": 0.438,
+        "SCH XS": 0.500,
+        "SCH 60": 0.594,
+        "SCH 80": 0.750,
+        "SCH 120": 1.094,
+        "SCH 160": 1.406,
+    },
+    16: {
+        "SCH 10": 0.250,
+        "SCH 20": 0.312,
+        "SCH STD/30": 0.375,
+        "SCH XS/40": 0.500,
+        "SCH 60": 0.656,
+        "SCH 80": 0.844,
+        "SCH 120": 1.219,
+        "SCH 160": 1.594,
+    },
+    20: {
+        "SCH 10": 0.250,
+        "SCH STD/20": 0.375,
+        "SCH XS/30": 0.500,
+        "SCH 40": 0.594,
+        "SCH 60": 0.812,
+        "SCH 80": 1.031,
+        "SCH 120": 1.500,
+        "SCH 160": 1.969,
+    },
+    24: {
+        "SCH 10": 0.250,
+        "SCH STD/20": 0.375,
+        "SCH XS": 0.500,
+        "SCH 40": 0.688,
+        "SCH 60": 0.969,
+        "SCH 80": 1.219,
+        "SCH 120": 1.812,
+        "SCH 160": 2.344,
+    },
+    30: {
+        "SCH 10": 0.312,
+        "SCH STD": 0.375,
+        "SCH XS/20": 0.500,
+    36: {
+        "SCH 10": 0.312,
+        "SCH STD": 0.375,
+        "SCH XS/20": 0.500,
+        "SCH 40": 0.750,
+    },
+    42: {
+        "SCH STD": 0.375,
+        "SCH XS": 0.500,
+    },
 }
-
 PIPE_OUTSIDE_DIAMETER = {
     3: 3.500,   # pulgadas
     4: 4.500,   # pulgadas
     6: 6.625,   # pulgadas
+    8: 8.625,   # pulgadas
+    10: 10.75,   # pulgadas
+    12: 12.75,   # pulgadas
+    14: 14.00,   # pulgadas
+    16: 16.00,   # pulgadas
+    20: 20.00,   # pulgadas
+    24: 24.00,   # pulgadas
+    30: 30.00,   # pulgadas
+    36: 36.00,   # pulgadas
+    42: 42.00,   # pulgadas
 }
 
 st.sidebar.header("Inputs de Tubería")
