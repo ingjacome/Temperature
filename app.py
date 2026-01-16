@@ -50,6 +50,7 @@ PIPE_DIAMETERS = {
 st.sidebar.header("Inputs de Tubería")
 pipe_diameter = st.sidebar.selectbox("Diámetro nominal (NPS)", options=list(PIPE_DIAMETERS.keys()))
 pipe_sch = st.sidebar.selectbox("Schedule", options=list(PIPE_DIAMETERS[pipe_diameter].keys()))
+wall_thickness_in = PIPE_DIAMETERS[pipe_diameter][pipe_sch]
 #pipe_diameter = st.sidebar.number_input("Diámetro de tubería (inches)", value=4.0)
 #pipe_sch = st.sidebar.selectbox("Schedule de tubería", ["SCH 10", "SCH 40", "SCH 80"])
 hod = st.sidebar.number_input("HOD (in)", value=6.0)
@@ -91,7 +92,7 @@ if st.sidebar.button("Calcular temperatura"):
     flow_m3_s = flow * bbl_to_m3 / (24*3600)  # BPD → m³/s
 
     # Diámetro interno aproximado según Schedule
-    internal_diameter_in = pipe_diameter - 2 * pipe_sch
+    internal_diameter_in = pipe_diameter - 2 * wall_thickness_in
     #internal_diameter_in = sch_dict.get(pipe_sch, 0.0895)
     diameter_m = internal_diameter_in * 0.0254  # pulgadas → milimetros
 
