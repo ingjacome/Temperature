@@ -20,10 +20,39 @@ unit = st.sidebar.selectbox("Unidad", ["°C", "°F"])
 #velocity = st.sidebar.number_input("Velocidad fluido (m/s)", value=15.0)
 flow = st.sidebar.number_input("Flujo (BPD)", value=1000.0)
 
+# Diámetros internos reales en METROS
+PIPE_DIAMETERS = {
+    3: {
+        "SCH 10s/10": 0.12,
+        "SCH 40/STD": 0.216,
+        "SCH XS/80": 0.3,
+        "SCH 160": 0.438,
+        "SCH XXS": 0.6,
+    },
+    4: {
+        "SCH 10s/10": 0.12,
+        "SCH 40/STD": 0.237,
+        "SCH XS/80": 0.337,
+        "SCH 120": 0.438,
+        "SCH 160": 0.531,
+        "SCH XXS": 0.674,
+    },
+    6: {
+        "SCH 10s/10": 0.134,
+        "SCH 40/STD": 0.28,
+        "SCH XS/80": 0.432,
+        "SCH 120": 0.562,
+        "SCH 160": 0.719,
+        "SCH XXS": 0.864,
+    },
+}
+
 st.sidebar.header("Inputs de Tubería")
-pipe_diameter = st.sidebar.number_input("Diámetro de tubería (inches)", value=4.0)
-pipe_sch = st.sidebar.selectbox("Schedule de tubería", ["SCH 10", "SCH 40", "SCH 80"])
-hod = st.sidebar.number_input("HOD (m)", value=6.0)
+pipe_diameter = st.sidebar.selectbox("Diámetro nominal (NPS)", options=list(PIPE_DIAMETERS.keys()))
+pipe_sch = st.sidebar.selectbox("Schedule", options=list(PIPE_DIAMETERS[pipe_nps].keys()))
+#pipe_diameter = st.sidebar.number_input("Diámetro de tubería (inches)", value=4.0)
+#pipe_sch = st.sidebar.selectbox("Schedule de tubería", ["SCH 10", "SCH 40", "SCH 80"])
+hod = st.sidebar.number_input("HOD (in)", value=6.0)
 
 st.sidebar.header("Termopozo")
 diameter = st.sidebar.number_input("Diámetro termopozo (mm)", value=18.0)
