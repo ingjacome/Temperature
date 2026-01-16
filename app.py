@@ -62,8 +62,9 @@ if st.sidebar.button("Calcular temperatura"):
     flow_m3_s = flow * bbl_to_m3 / (24*3600)  # BPD → m³/s
 
     # Diámetro interno aproximado según Schedule
-    sch_dict = {"SCH 10": 0.065, "SCH 40": 0.067, "SCH 80": 0.065}  # ejemplo 4" in
-    internal_diameter_in = sch_dict.get(pipe_sch, 0.065)
+    sch_dict = {"SCH 10": 0.12, "SCH 40": 0.237, "SCH 80": 0.337}  # ejemplo 4" in
+    Internal_diameter_in = pipe_diameter - 2 * sch_dict.get(pipe_sch, 0.12)
+    #internal_diameter_in = sch_dict.get(pipe_sch, 0.0895)
     diameter_m = internal_diameter_in * 0.0254  # pulgadas → metros
 
     velocity = flow_m3_s / (3.1416 * (diameter_m/2)**2)
