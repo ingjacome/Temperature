@@ -65,11 +65,11 @@ if st.sidebar.button("Calcular temperatura"):
     sch_dict = {"SCH 10": 0.12, "SCH 40": 0.237, "SCH 80": 0.337}  # ejemplo 4" in
     internal_diameter_in = pipe_diameter - 2 * sch_dict.get(pipe_sch, 0.12)
     #internal_diameter_in = sch_dict.get(pipe_sch, 0.0895)
-    diameter_mm = internal_diameter_in * 25.4  # pulgadas → milimetros
+    diameter_m = internal_diameter_in * 0.0254  # pulgadas → milimetros
 
-    velocity = flow_m3_s / (3.1416 * (diameter_mm/2)**2)
+    velocity = flow_m3_s / (3.1416 * (diameter_m/2)**2)
     insertion_length = internal_diameter_in * 2/3 + hod  # regla práctica para longitud de inserción
-    length_mm = insertion_length * 0.0254
+    length_mm = insertion_length * 25.4
 
     # Verificación termopozo (usando función ya existente)
     status, fv, fn = check_thermowell(
@@ -94,7 +94,7 @@ if st.sidebar.button("Calcular temperatura"):
         st.metric("Sensor seleccionado", sensor["model"])
         st.metric("Error total", f"{err_total:.3f} °C")
         st.metric("Velocidad del fluido", f"{velocity:.2f} m/s")
-        st.metric("Longitud inserción termopozo", f"{insertion_length:.2f} m")
+        st.metric("Longitud inserción termopozo", f"{length_mm:.2f} mm")
         
         if "NO CUMPLE" in status:
             st.error(status)
