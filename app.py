@@ -1,5 +1,5 @@
 import streamlit as st
-from modules.temperature_calc import f_to_c, select_transmitter_range, sensor_error, transmitter_error, total_error
+from modules.temperature_calc import *
 #from modules.thermowell import *
 #from modules.sensors_db import *
 #from modules.plots import *
