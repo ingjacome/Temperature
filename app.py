@@ -1,8 +1,8 @@
 import streamlit as st
 from modules.temperature_calc import *
-#from modules.thermowell import *
+from modules.thermowell import *
 from modules.sensors_db import *
-#from modules.plots import *
+from modules.plots import *
 import os
 
 st.set_page_config(page_title="Temperature EPC Tool", layout="wide")
