@@ -72,7 +72,7 @@ density = st.sidebar.number_input("Densidad fluido (kg/m³)", value=1000.0)
 # BOTÓN
 # =====================
 if st.sidebar.button("Calcular temperatura"):
-
+    input_unit = unit
     if unit == "°F":
         Tn = f_to_c(Tn)
         Tmax = f_to_c(Tmax)
@@ -112,11 +112,28 @@ if st.sidebar.button("Calcular temperatura"):
     status, fv, fn = check_thermowell(
         velocity, diameter_m*1000, length_mm, elastic_modulus, density
     )
-
+    # mostrar unidades seleccionadas
+    if input_unit == "°F":
+        Tn_out = c_to_f(Tn)
+        Tmax_out = c_to_f(Tmax)
+        high_out = c_to_f(high)
+        err_sensor_out = err_sensor * 9/5
+        err_tx_out = err_tx * 9/5
+        err_total_out = err_total * 9/5   # error también escala
+        temp_unit = "°F"
+    else:
+        Tn_out = Tn
+        Tmax_out = Tmax
+        high_out = high
+        err_sensor_out = err_sensor
+        err_tx_out = err_tx
+        err_total_out = err_total
+        temp_unit = "°C"
+        
     os.makedirs("output", exist_ok=True)
 
-    plot_transmitter_range(Tn, Tmax, high, "output/range_plot.png")
-    plot_error(err_sensor, err_tx, err_total, "output/error_plot.png")
+    plot_transmitter_range(Tn_out, Tmax_out, high_out, "output/range_plot.png")
+    plot_error(err_sensor_out, err_tx_out, err_total_out, "output/error_plot.png")
     plot_thermowell(fn, fv, "output/thermowell_plot.png")
 
     # =====================
@@ -127,9 +144,9 @@ if st.sidebar.button("Calcular temperatura"):
     col1, col2 = st.columns(2)
 
     with col1:
-        st.metric("Rango transmisor", f"0 – {high} °C")
+        st.metric("Rango transmisor", f"0 – {high_out:.1f} {temp_unit}")
         st.metric("Sensor seleccionado", sensor["model"])
-        st.metric("Error total", f"{err_total:.3f} °C")
+        st.metric("Error total", f"{err_total_out:.3f} {temp_unit}")
         st.metric("Velocidad del fluido", f"{velocity_ft_s:.2f} ft/s")
         st.metric("Longitud inserción termopozo", f"{length_mm:.2f} mm")
         
