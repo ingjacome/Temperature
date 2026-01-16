@@ -92,7 +92,7 @@ if st.sidebar.button("Calcular temperatura"):
         st.metric("Rango transmisor", f"0 – {high} °C")
         st.metric("Sensor seleccionado", sensor["model"])
         st.metric("Error total", f"{err_total:.3f} °C")
-        st.metric("Velocidad del fluido", f"{velocity_calc:.2f} m/s")
+        st.metric("Velocidad del fluido", f"{velocity:.2f} m/s")
         st.metric("Longitud inserción termopozo", f"{insertion_length:.2f} m")
         
         if "NO CUMPLE" in status:
