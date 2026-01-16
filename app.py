@@ -112,23 +112,6 @@ if st.sidebar.button("Calcular temperatura"):
     status, fv, fn = check_thermowell(
         velocity, diameter_m*1000, length_mm, elastic_modulus, density
     )
-    # mostrar unidades seleccionadas
-    if input_unit == "°F":
-        Tn_out = c_to_f(Tn)
-        Tmax_out = c_to_f(Tmax)
-        high_out = c_to_f(high)
-        err_sensor_out = err_sensor * 9/5
-        err_tx_out = err_tx * 9/5
-        err_total_out = err_total * 9/5   # error también escala
-        temp_unit = "°F"
-    else:
-        Tn_out = Tn
-        Tmax_out = Tmax
-        high_out = high
-        err_sensor_out = err_sensor
-        err_tx_out = err_tx
-        err_total_out = err_total
-        temp_unit = "°C"
         
     os.makedirs("output", exist_ok=True)
 
