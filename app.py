@@ -1,7 +1,7 @@
 import streamlit as st
 from modules.temperature_calc import *
 #from modules.thermowell import *
-#from modules.sensors_db import *
+from modules.sensors_db import *
 #from modules.plots import *
 import os
 
