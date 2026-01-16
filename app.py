@@ -17,7 +17,7 @@ st.sidebar.header("Inputs de Proceso")
 Tn = st.sidebar.number_input("Temperatura normal", value=120.0)
 Tmax = st.sidebar.number_input("Temperatura máxima", value=150.0)
 unit = st.sidebar.selectbox("Unidad", ["°C", "°F"])
-
+flow = st.sidebar.selectbox("Flujo (BPD)", value=3000.0)
 velocity = st.sidebar.number_input("Velocidad fluido (m/s)", value=15.0)
 
 st.sidebar.header("Termopozo")
