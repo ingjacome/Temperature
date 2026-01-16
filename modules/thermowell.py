@@ -1,1 +1,21 @@
-{"nbformat":4,"nbformat_minor":0,"metadata":{"colab":{"provenance":[],"authorship_tag":"ABX9TyPlyMKT3rBbh+xUaHV+W0Is"},"kernelspec":{"name":"python3","display_name":"Python 3"},"language_info":{"name":"python"}},"cells":[{"cell_type":"code","execution_count":1,"metadata":{"id":"EM3I36Ji8hbD","executionInfo":{"status":"ok","timestamp":1768502229997,"user_tz":300,"elapsed":5,"user":{"displayName":"Erik Jácome","userId":"05183358460023020012"}}},"outputs":[],"source":["def vortex_frequency(velocity, diameter_mm):\n","    st = 0.2\n","    d = diameter_mm / 1000\n","    return st * velocity / d\n","\n","\n","def natural_frequency(diameter_mm, length_mm, elastic_modulus_gpa, density):\n","    d = diameter_mm / 1000\n","    l = length_mm / 1000\n","    e = elastic_modulus_gpa * 1e9\n","    return 0.56 * (d / l**2) * ((e / density) ** 0.5)\n","\n","\n","def check_thermowell(velocity, diameter_mm, length_mm, elastic_modulus_gpa, density):\n","    fv = vortex_frequency(velocity, diameter_mm)\n","    fn = natural_frequency(diameter_mm, length_mm, elastic_modulus_gpa, density)\n","\n","    if fn >= 2.2 * fv:\n","        return \"APROBADO\", fv, fn\n","    else:\n","        return \"NO CUMPLE – Resonancia\", fv, fn\n"]}]}
+def vortex_frequency(velocity, diameter_mm):
+    st = 0.2
+    d = diameter_mm / 1000
+    return st * velocity / d
+
+
+def natural_frequency(diameter_mm, length_mm, elastic_modulus_gpa, density):
+    d = diameter_mm / 1000
+    l = length_mm / 1000
+    e = elastic_modulus_gpa * 1e9
+    return 0.56 * (d / l**2) * ((e / density) ** 0.5)
+
+
+def check_thermowell(velocity, diameter_mm, length_mm, elastic_modulus_gpa, density):
+    fv = vortex_frequency(velocity, diameter_mm)
+    fn = natural_frequency(diameter_mm, length_mm, elastic_modulus_gpa, density)
+
+    if fn >= 2.2 * fv:
+        return "APROBADO", fv, fn
+    else:
+        return "NO CUMPLE – Resonancia", fv, fn
