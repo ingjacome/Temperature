@@ -121,6 +121,7 @@ PIPE_DIAMETERS = {
         "SCH 10": 0.312,
         "SCH STD": 0.375,
         "SCH XS/20": 0.500,
+    },
     36: {
         "SCH 10": 0.312,
         "SCH STD": 0.375,
