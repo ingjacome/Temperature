@@ -1,1 +1,11 @@
-{"nbformat":4,"nbformat_minor":0,"metadata":{"colab":{"provenance":[],"authorship_tag":"ABX9TyOIUULx0TxazJvtiM0Z6dj4"},"kernelspec":{"name":"python3","display_name":"Python 3"},"language_info":{"name":"python"}},"cells":[{"cell_type":"code","execution_count":1,"metadata":{"id":"LBl8_rVC8unL","executionInfo":{"status":"ok","timestamp":1768502287788,"user_tz":300,"elapsed":13,"user":{"displayName":"Erik Jácome","userId":"05183358460023020012"}}},"outputs":[],"source":["SENSORS = [\n","    {\"model\": \"Rosemount 214C\", \"type\": \"RTD\", \"tmin\": -200, \"tmax\": 600, \"error\": 0.15},\n","    {\"model\": \"Endress TR10\", \"type\": \"RTD\", \"tmin\": -50, \"tmax\": 400, \"error\": 0.20},\n","    {\"model\": \"Yokogawa YTA110\", \"type\": \"TC\", \"tmin\": -200, \"tmax\": 1100, \"error\": 2.0},\n","]\n","\n","\n","def select_sensor(tmax_design):\n","    candidates = [s for s in SENSORS if s[\"tmax\"] >= tmax_design]\n","    candidates.sort(key=lambda x: x[\"error\"])\n","    return candidates[0] if candidates else None\n"]}]}
+SENSORS = [
+    {"model": "Rosemount 214C", "type": "RTD", "tmin": -200, "tmax": 600, "error": 0.15},
+    {"model": "Endress TR10", "type": "RTD", "tmin": -50, "tmax": 400, "error": 0.20},
+    {"model": "Yokogawa YTA110", "type": "TC", "tmin": -200, "tmax": 1100, "error": 2.0},
+]
+
+
+def select_sensor(tmax_design):
+    candidates = [s for s in SENSORS if s["tmax"] >= tmax_design]
+    candidates.sort(key=lambda x: x["error"])
+    return candidates[0] if candidates else None
