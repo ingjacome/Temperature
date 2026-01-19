@@ -3,6 +3,7 @@ from modules.temperature_calc import *
 from modules.thermowell import *
 from modules.sensors_db import *
 from modules.plots import *
+from modules.thermowell_sketch import *
 import os
 
 st.set_page_config(page_title="Temperature EPC Tool", layout="wide")
@@ -260,3 +261,11 @@ if st.sidebar.button("Calcular temperatura"):
         st.image("output/range_plot.png", caption="Rango del transmisor")
         st.image("output/error_plot.png", caption="Error del sistema")
         st.image("output/thermowell_plot.png", caption="Verificación ASME PTC 19.3")
+
+    # =====================
+    # GRAFICA
+    # =====================
+    st.subheader("📐 Esquema de instalación del termopozo")
+
+    fig = plot_thermowell_dimensions(pipe_id_mm, H, U, L)
+    st.pyplot(fig)
