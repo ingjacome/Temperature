@@ -65,14 +65,14 @@ def plot_thermowell_datasheet(pipe_id_mm, H, U, L,pipe_od, connection_value):
     # DIMENSIONS
     # =========================
     # H
-    ax.annotate("", xy=(-pipe_radius/15, pipe_radius_od), xytext=(-pipe_radius/15, pipe_radius_od + H),
+    ax.annotate("", xy=(-pipe_radius/15-nozzle_width, pipe_radius_od), xytext=(-pipe_radius/15-nozzle_width, pipe_radius_od + H),
                 arrowprops=dict(arrowstyle="<->"))
-    ax.text(-pipe_radius/6, pipe_radius_od + H/2, f"H = {H:.1f} mm", rotation=90, va="center", fontsize=8)
+    ax.text(-pipe_radius/6-nozzle_width, pipe_radius_od + H/2, f"H = {H:.1f} mm", rotation=90, va="center", fontsize=8)
 
     # U
-    ax.annotate("", xy=(-pipe_radius/15-nozzle_width, pipe_radius), xytext=(-pipe_radius/15-nozzle_width, tw_end),
+    ax.annotate("", xy=(-pipe_radius/15, pipe_radius), xytext=(-pipe_radius/15, tw_end),
                 arrowprops=dict(arrowstyle="<->"))
-    ax.text(-pipe_radius/6-nozzle_width, (pipe_radius + tw_end)/2, f"U = {U:.1f} mm", rotation=90, va="center", fontsize=8)
+    ax.text(-pipe_radius/6, (pipe_radius + tw_end)/2, f"U = {U:.1f} mm", rotation=90, va="center", fontsize=8)
 
     # L
     ax.annotate("", xy=(pipe_radius_od + pipe_radius_od/50, tw_start), xytext=(pipe_radius_od + pipe_radius_od/50, tw_end),
