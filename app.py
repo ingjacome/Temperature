@@ -171,13 +171,14 @@ density = st.sidebar.number_input("Densidad fluido (kg/m³)", value=1000.0)
 # =================== 
 # CONEXION DIAMETER
 #====================
-TERMOWELL_DIAMETER = [
-    ("1/4 in", 0.25),
-    ("1/2 in", 0.5),
-    ("3/4 in", 0.75),
-    ("1 in", 1.0),
-    ("1-1/2 in", 1.5),
-    ("2 in", 2.0),]
+TERMOWELL_DIAMETER = {
+    "1/4 in":0.25,
+    "1/2 in":0.5,
+    "3/4 in":0.75,
+    "1 in":1.0,
+    "1-1/2 in":1.5,
+    "2 in":2.0
+}
 connection_value = TERMOWELL_DIAMETER[connection]
 
 
