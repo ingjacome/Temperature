@@ -54,7 +54,7 @@ def plot_thermowell_datasheet(pipe_id_mm, H, U, L):
     # THERMOWELL (ENTRA AL PIPE)
     # =========================
     tw_start = pipe_radius + nozzle_height
-    tw_end = -U   # entra hasta U desde CL
+    tw_end = -(pipe_radius-pipe_id_mm*2/3)   # entra hasta U desde CL
 
     ax.plot([0, 0], [tw_start, tw_end], linewidth=6, color="black")
    
