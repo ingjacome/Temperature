@@ -39,7 +39,7 @@ def plot_thermowell_datasheet(pipe_id_mm, H, U, L,pipe_od, connection_value):
     # =========================
     # FLANGE
     # =========================
-    flange_width = 80
+    flange_width = connection_value*25.4*2
     flange_height = 15
 
     flange = Rectangle(
