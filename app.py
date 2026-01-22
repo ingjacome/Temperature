@@ -272,6 +272,7 @@ if st.sidebar.button("Calcular temperatura"):
         st.metric("Error total", f"{err_total_out:.3f} {temp_unit}")
         st.metric("Velocidad del fluido", f"{velocity_ft_s:.2f} ft/s")
         st.metric("Longitud inserción termopozo", f"{length_mm:.2f} mm")
+        st.metric("connection_value", f"{connection_value:.2f} in")
         if "NO CUMPLE" in status:
             st.error(status)
         else:
