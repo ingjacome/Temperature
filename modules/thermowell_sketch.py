@@ -1,69 +1,89 @@
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle, Rectangle
 
-def plot_thermowell_dimensions(pipe_id_mm, H, U, L):
-    fig, ax = plt.subplots(figsize=(10, 3))
+def plot_thermowell_datasheet(pipe_id_mm, H, U, L):
+    fig, ax = plt.subplots(figsize=(4, 10))
+
+    # =========================
+    # PIPE
+    # =========================
+    pipe_radius = pipe_id_mm / 2
+    pipe_center_y = 0
+
+    pipe = Circle((0, pipe_center_y), pipe_radius, fill=False, linewidth=2)
+    ax.add_patch(pipe)
 
     # =========================
     # CENTERLINE
     # =========================
-    ax.axhline(0, linestyle="--", linewidth=1)
-    ax.text(-10, 0.05, "CL", fontsize=9)
+    ax.axhline(pipe_radius-pipe_id_mm*2/3, linestyle="--", linewidth=1)
 
     # =========================
-    # PIPE (CÍRCULO)
-    # =========================
-    pipe_radius = pipe_id_mm / 2
-    pipe = Circle((H + U/2, 0), pipe_radius, fill=False, linewidth=2)
-    ax.add_patch(pipe)
-    ax.text(H + U/2, pipe_radius + 5, "PIPE", ha="center")
-
-    # =========================
-    # NOZZLE
+    # NOZZLE (desde OD del pipe)
     # =========================
     nozzle_width = 20
-    nozzle_height = pipe_radius + 20
-    nozzle = Rectangle((H - nozzle_width/2, -nozzle_height/2),
-                        nozzle_width, nozzle_height,
-                        fill=False, linewidth=2)
-    ax.add_patch(nozzle)
-    ax.text(H, nozzle_height/2 + 5, "NOZZLE", ha="center")
+    nozzle_height = H
 
-    # =========================
-    # TERMOWELL
-    # =========================
-    ax.plot([0, L], [0, 0], linewidth=6)
-    ax.text(L + 5, 0, "TW", va="center")
+    nozzle = Rectangle(
+        (-nozzle_width/2, pipe_radius),
+        nozzle_width,
+        nozzle_height,
+        fill=False,
+        linewidth=2
+    )
+    ax.add_patch(nozzle)
+  
 
     # =========================
     # FLANGE
     # =========================
-    flange = Rectangle((H-5, -20), 10, 40, fill=False, linewidth=3)
+    flange_width = 80
+    flange_height = 15
+
+    flange = Rectangle(
+        (-flange_width/2, pipe_radius + nozzle_height-flange_height),
+        flange_width,
+        flange_height,
+        fill=False,
+        linewidth=3
+    )
     ax.add_patch(flange)
-    ax.text(H, -25, "FLANGE", ha="center")
+ 
+
+    # =========================
+    # THERMOWELL (ENTRA AL PIPE)
+    # =========================
+    tw_start = pipe_radius + nozzle_height
+    tw_end = -U   # entra hasta U desde CL
+
+    ax.plot([0, 0], [tw_start, tw_end], linewidth=6, color="black")
+   
 
     # =========================
     # DIMENSIONS
     # =========================
-    ax.annotate("", xy=(0, -40), xytext=(H, -40),
+    # H
+    ax.annotate("", xy=(-50, pipe_radius), xytext=(-50, pipe_radius + H),
                 arrowprops=dict(arrowstyle="<->"))
-    ax.text(H/2, -45, f"H = {H:.1f} mm", ha="center")
+    ax.text(-55, pipe_radius + H/2, f"H = {H:.1f} mm", rotation=90, va="center", fontsize=8)
 
-    ax.annotate("", xy=(H, -60), xytext=(H+U, -60),
+    # U
+    ax.annotate("", xy=(-10, -U), xytext=(-10, pipe_radius),
                 arrowprops=dict(arrowstyle="<->"))
-    ax.text(H + U/2, -65, f"U = {U:.1f} mm", ha="center")
+    ax.text(-20, -U/2, f"U = {U:.1f} mm", rotation=90, va="center", fontsize=8)
 
-    ax.annotate("", xy=(0, -80), xytext=(L, -80),
+    # L
+    ax.annotate("", xy=(50, tw_start), xytext=(50, tw_end),
                 arrowprops=dict(arrowstyle="<->"))
-    ax.text(L/2, -85, f"L = {L:.1f} mm", ha="center")
+    ax.text(55, (tw_start + tw_end)/2, f"L = {L:.1f} mm", rotation=90, va="center", fontsize=8)
 
     # =========================
     # VIEW
     # =========================
     ax.set_aspect("equal", adjustable="box")
-    ax.set_ylim(-100, pipe_radius + 60)
-    ax.set_xlim(-20, L + 60)
+    ax.set_xlim(-100, 100)
+    ax.set_ylim(-pipe_radius - U - 40, tw_start + 40)
     ax.axis("off")
-    ax.set_title("Thermowell Installation Sketch")
+    ax.set_title("Vertical Thermowell – Datasheet Style", fontsize=10)
 
     return fig
