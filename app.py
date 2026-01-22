@@ -168,6 +168,27 @@ diameter = st.sidebar.number_input("Diámetro termopozo (mm)", value=18.0)
 elastic_modulus = st.sidebar.number_input("Módulo elasticidad (GPa)", value=193.0, help = "Valores típicos: SS316 ≈ 193 GPa, Inconel625 ≈ 207 GPa")
 density = st.sidebar.number_input("Densidad fluido (kg/m³)", value=1000.0)
 
+# =================== 
+# CONEXION DIAMETER
+#====================
+options = [
+    ("1/4 in", 0.25),
+    ("1/2 in", 0.5),
+    ("3/4 in", 0.75),
+    ("1 in", 1.0),
+    ("1-1/2 in", 1.5),
+    ("2 in", 2.0),
+]
+
+label = st.sidebar.selectbox(
+    "Diámetro Conexión",
+    options,
+    format_func=lambda x: x[0]
+)
+
+connection_value = label[1]
+
+
 # =====================
 # BOTÓN
 # =====================
@@ -251,7 +272,7 @@ if st.sidebar.button("Calcular temperatura"):
         st.metric("Error total", f"{err_total_out:.3f} {temp_unit}")
         st.metric("Velocidad del fluido", f"{velocity_ft_s:.2f} ft/s")
         st.metric("Longitud inserción termopozo", f"{length_mm:.2f} mm")
-        
+        st.metric("valor conexion", f"{connection_value:.2f} in")
         if "NO CUMPLE" in status:
             st.error(status)
         else:
