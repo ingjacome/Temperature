@@ -272,7 +272,6 @@ if st.sidebar.button("Calcular temperatura"):
         st.metric("Error total", f"{err_total_out:.3f} {temp_unit}")
         st.metric("Velocidad del fluido", f"{velocity_ft_s:.2f} ft/s")
         st.metric("Longitud inserción termopozo", f"{length_mm:.2f} mm")
-        st.metric("valor conexion", f"{connection_value:.2f} in")
         if "NO CUMPLE" in status:
             st.error(status)
         else:
@@ -287,6 +286,6 @@ if st.sidebar.button("Calcular temperatura"):
     # GRAFICA
     # =====================
     st.subheader("📐 Esquema de instalación del termopozo")
-    fig = plot_thermowell_datasheet(diameter_m*1000, hod*25.4, insertion_length*25.4, length_mm, pipe_od*25.4)
+    fig = plot_thermowell_datasheet(diameter_m*1000, hod*25.4, insertion_length*25.4, length_mm, pipe_od*25.4, connection_value)
     #fig = plot_thermowell_dimensions(diameter_m*1000, hod*25.4, 10, insertion_length*25.4)
     st.pyplot(fig)
