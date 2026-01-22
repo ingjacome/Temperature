@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle, Rectangle
 
-def plot_thermowell_datasheet(pipe_id_mm, H, U, L,pipe_od):
+def plot_thermowell_datasheet(pipe_id_mm, H, U, L,pipe_od, connection_value):
     fig, ax = plt.subplots(figsize=(4, 10))
 
     # =========================
@@ -23,7 +23,7 @@ def plot_thermowell_datasheet(pipe_id_mm, H, U, L,pipe_od):
     # =========================
     # NOZZLE (desde OD del pipe)
     # =========================
-    nozzle_width = 20
+    nozzle_width = connection_value*25.4
     nozzle_height = H
 
     nozzle = Rectangle(
