@@ -177,7 +177,7 @@ TERMOWELL_DIAMETER = [
     ("3/4 in", 0.75),
     ("1 in", 1.0),
     ("1-1/2 in", 1.5),
-    ("2 in", 2.0),
+    ("2 in", 2.0),]
 connection_value = TERMOWELL_DIAMETER[connection]
 
 
