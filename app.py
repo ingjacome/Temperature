@@ -266,6 +266,6 @@ if st.sidebar.button("Calcular temperatura"):
     # GRAFICA
     # =====================
     st.subheader("📐 Esquema de instalación del termopozo")
-    fig = plot_thermowell_datasheet(pipe_id_mm=250, H=100, U=60, L=160)
+    fig = plot_thermowell_datasheet(diameter_m*1000, H=100, U=60, L=160)
     #fig = plot_thermowell_dimensions(diameter_m*1000, hod*25.4, 10, insertion_length*25.4)
     st.pyplot(fig)
