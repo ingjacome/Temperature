@@ -161,7 +161,7 @@ hod = st.sidebar.number_input("HOD (in)", value=6.0)
 
 st.sidebar.header("Termopozo")
 mounting = st.sidebar.selectbox("Estilo Montaje", ["Welded", "Threaded", "Flanged"])
-connection = st.sidebar.selectbox("Diametro Conexión", ["1/4 in":0.75, "1/2 in", "3/4 in", "1 in", "1-1/2 in", "2 in"])
+connection = st.sidebar.selectbox("Diametro Conexión", ["1/4 in", "1/2 in", "3/4 in", "1 in", "1-1/2 in", "2 in"])
 connection1 = st.sidebar.selectbox("Tipo Conexión", ["NPT", "RF 150#", "RF 300#", "RF 600#", "RTJ 900/1500#", "RTJ 2500#"])
 diameter = st.sidebar.number_input("Diámetro termopozo (mm)", value=18.0)
 #length = st.sidebar.number_input("Longitud inserción (mm)", value=180.0)
