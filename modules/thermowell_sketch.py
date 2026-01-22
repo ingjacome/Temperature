@@ -75,9 +75,9 @@ def plot_thermowell_datasheet(pipe_id_mm, H, U, L,pipe_od, connection_value):
     ax.text(-pipe_radius/6, (pipe_radius + tw_end)/2, f"U = {U:.1f} mm", rotation=90, va="center", fontsize=8)
 
     # L
-    ax.annotate("", xy=(pipe_radius + pipe_radius/50, tw_start), xytext=(pipe_radius + pipe_radius/50, tw_end),
+    ax.annotate("", xy=(pipe_radius_od + pipe_radius_od/50, tw_start), xytext=(pipe_radius_od + pipe_radius_od/50, tw_end),
                 arrowprops=dict(arrowstyle="<->"))
-    ax.text(pipe_radius + pipe_radius/30, (tw_start + tw_end)/2, f"L = {L:.1f} mm", rotation=90, va="center", fontsize=8)
+    ax.text(pipe_radius_od + pipe_radius_od/30, (tw_start + tw_end)/2, f"L = {L:.1f} mm", rotation=90, va="center", fontsize=8)
 
     # =========================
     # VIEW
