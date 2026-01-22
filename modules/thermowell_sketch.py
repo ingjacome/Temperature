@@ -7,7 +7,7 @@ def plot_thermowell_datasheet(pipe_id_mm, H, U, L):
     # =========================
     # PIPE
     # =========================
-    pipe_radius = pipe_id_mm #/ 2
+    pipe_radius = pipe_id_mm / 2
     pipe_center_y = 0
 
     pipe = Circle((0, pipe_center_y), pipe_radius, fill=False, linewidth=2)
@@ -81,7 +81,7 @@ def plot_thermowell_datasheet(pipe_id_mm, H, U, L):
     # VIEW
     # =========================
     ax.set_aspect("equal", adjustable="box")
-    ax.set_xlim(-100, 100)
+    ax.set_xlim(-pipe_radius-20, pipe_radius+20)
     ax.set_ylim(-pipe_radius - U - 40, tw_start + 40)
     ax.axis("off")
     ax.set_title("Vertical Thermowell – Datasheet Style", fontsize=10)
